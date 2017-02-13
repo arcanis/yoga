@@ -42,12 +42,24 @@ before_install:
       brew upgrade xctool;
     fi
 
-  # JavaScript
+  # Emscripten (used for js tests)
+  # Note: cannot be ran on Linux (because it will compile Clang from its sources :|)
   - |
     if [[ $TARGET = "js" ]]; then
+      wget -O /tmp/emsdk-portable.tar.gz https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz;
+      tar xvf /tmp/emsdk-portable.tar.gz -C /tmp/;
+      /tmp/emsdk_portable/emsdk install latest;
+      /tmp/emsdk_portable/emsdk activate latest;
+    fi
+
+  # JavaScript
+  - |
+    if [[ $TARGET = "js" ]]; then (
       cd javascript;
       npm install;
-    fi
+      source /tmp/emsdk_portable/emsdk_env.sh;
+      CC=emcc CXX=em++ npm run build:browser;
+    ) fi
 
 script:
     # C
