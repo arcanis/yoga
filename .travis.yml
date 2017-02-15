@@ -21,6 +21,9 @@ before_install:
   # Exit "if" statements after the first error
   - set -ev
   
+  # There's currently a build in Travis RVM version that break the build when using set -e; stable fixes this
+  - rvm get stable
+  
   - brew update
   - brew tap facebook/fb
   - brew install buck
