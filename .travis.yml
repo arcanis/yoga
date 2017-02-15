@@ -18,11 +18,8 @@ env:
   - TARGET=js
 
 before_install:
-  # Exit "if" statements after the first error
+  # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
   - set -ev
-  
-  # There's currently a build in Travis RVM version that break the build when using set -e; stable fixes this
-  - rvm get stable
   
   - brew update
   - brew tap facebook/fb
@@ -67,9 +64,12 @@ before_install:
       source /tmp/emsdk_portable/emsdk_env.sh;
       npm run build:browser;
     ) fi
+    
+  # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
+  - set +v
 
 script:
-    # Exit "if" statements after the first error
+    # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
     - set -ev
     
     # C
@@ -106,3 +106,6 @@ script:
         npm run test:all;
         npm run bench;
       fi
+      
+    # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
+    - set +v
