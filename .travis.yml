@@ -21,7 +21,7 @@ before_install:
   # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
   - set -ev
   
-  - brew update
+  - brew update > /dev/null
   - brew tap facebook/fb
   - brew install buck
 
@@ -50,8 +50,8 @@ before_install:
   - |
     if [[ $TARGET = "js" ]]; then
       wget -O /tmp/emsdk-portable.tar.gz https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz;
-      tar xvf /tmp/emsdk-portable.tar.gz -C /tmp/;
-      /tmp/emsdk_portable/emsdk install latest;
+      tar xf /tmp/emsdk-portable.tar.gz -C /tmp/;
+      /tmp/emsdk_portable/emsdk install latest > /dev/null;
       /tmp/emsdk_portable/emsdk activate latest;
     fi
 
