@@ -57,8 +57,11 @@ before_install:
     if [[ $TARGET = "js" ]]; then (
       cd javascript;
       npm install;
+      unset CC
+      unset CXX
+      unset LINK
       source /tmp/emsdk_portable/emsdk_env.sh;
-      CC=emcc CXX=em++ npm run build:browser;
+      npm run build:browser;
     ) fi
 
 script:
