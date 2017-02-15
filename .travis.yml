@@ -18,6 +18,9 @@ env:
   - TARGET=js
 
 before_install:
+  # Exit "if" statements after the first error
+  - set -ev
+  
   - brew update
   - brew tap facebook/fb
   - brew install buck
@@ -57,17 +60,15 @@ before_install:
     if [[ $TARGET = "js" ]]; then (
       cd javascript;
       npm install;
-      unset CC;
-      unset CXX;
-      unset LINK;
+      unset CC; unset CXX; unset LINK;
       source /tmp/emsdk_portable/emsdk_env.sh;
-      ls /private/tmp/emsdk_portable /private/tmp/emsdk_portable/clang/e1.35.0_64bit;
-      which emcc;
-      which em++;
       npm run build:browser;
     ) fi
 
 script:
+    # Exit "if" statements after the first error
+    - set -ev
+    
     # C
     - |
       if [[ $TARGET = "c" ]]; then
