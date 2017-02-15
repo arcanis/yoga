@@ -19,7 +19,7 @@ env:
 
 before_install:
   # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
-  - set -ev
+  # - set -ev
   
   - brew update > /dev/null
   - brew tap facebook/fb
@@ -63,14 +63,15 @@ before_install:
       unset CC; unset CXX; unset LINK;
       source /tmp/emsdk_portable/emsdk_env.sh;
       npm run build:browser;
+      echo $?;
     ) fi
     
   # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
-  - set +e
+  # - set +e
 
 script:
     # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
-    - set -ev
+    # - set -ev
     
     # C
     - |
@@ -108,4 +109,4 @@ script:
       fi
       
     # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
-    - set +e
+    # - set +e
