@@ -66,7 +66,7 @@ before_install:
     ) fi
     
   # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
-  - set +v
+  - set +e
 
 script:
     # Enable fatal errors so that we exit "if" statements after the first error instead of continuing
@@ -108,4 +108,4 @@ script:
       fi
       
     # Disable fatal errors. There's an issue in Travis' RVM version that would break the build otherwise
-    - set +v
+    - set +e
