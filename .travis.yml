@@ -61,6 +61,9 @@ before_install:
       unset CXX;
       unset LINK;
       source /tmp/emsdk_portable/emsdk_env.sh;
+      ls /private/tmp/emsdk_portable /private/tmp/emsdk_portable/clang/e1.35.0_64bit;
+      which emcc;
+      which em++;
       npm run build:browser;
     ) fi
 
