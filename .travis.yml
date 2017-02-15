@@ -87,7 +87,7 @@ script:
   # iOS
   - |
     if [[ $TARGET = "ios" ]]; then
-      buck test --verbose 0 //YogaKit:YogaKitTests --config cxx.default_platform=iphonesimulator-x86_64 &&
+      buck test --verbose 0 //YogaKit:YogaKitTests --config cxx.default_platform=iphonesimulator-x86_64
     fi
 
   # JavaScript
